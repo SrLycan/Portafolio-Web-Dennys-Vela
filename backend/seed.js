@@ -27,7 +27,6 @@ const seedData = async () => {
 
     console.log('✅ Datos anteriores eliminados');
 
-    // Crear usuario administrador
     const admin = await User.create({
       email: process.env.ADMIN_EMAIL || 'dennysvela@hotmail.com',
       password: process.env.ADMIN_PASSWORD || 'Admin123!',
@@ -36,7 +35,7 @@ const seedData = async () => {
 
     console.log('✅ Usuario administrador creado');
 
-    // Crear perfil basado en tu CV
+
     const profile = await Profile.create({
       nombre: 'Dennys Vela',
       titulo: 'Desarrollador Full Stack',
@@ -126,7 +125,6 @@ const seedData = async () => {
 
     console.log('✅ Perfil creado con éxito');
 
-    // Crear 2 posts de ejemplo
     const posts = [
       {
         titulo: 'Introducción al Desarrollo Full Stack con MERN',

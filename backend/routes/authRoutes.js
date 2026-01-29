@@ -11,7 +11,7 @@ import {
 
 const router = express.Router();
 
-// Validaciones
+
 const registerValidation = [
   body('email')
     .isEmail()
@@ -48,11 +48,11 @@ const changePasswordValidation = [
   handleValidationErrors
 ];
 
-// Rutas públicas
+
 router.post('/register', registerValidation, register);
 router.post('/login', loginValidation, login);
 
-// Rutas protegidas
+
 router.get('/me', protect, getMe);
 router.put('/changepassword', protect, changePasswordValidation, changePassword);
 

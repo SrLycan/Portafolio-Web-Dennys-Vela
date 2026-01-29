@@ -1,14 +1,12 @@
 import User from '../models/User.js';
 import { generateToken } from '../middleware/auth.js';
 
-// @desc    Registrar nuevo usuario
-// @route   POST /api/auth/register
-// @access  Public
+
 export const register = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Verificar si el usuario ya existe
+
     const userExists = await User.findOne({ email });
 
     if (userExists) {
@@ -18,7 +16,6 @@ export const register = async (req, res) => {
       });
     }
 
-    // Crear usuario
     const user = await User.create({
       email,
       password,
@@ -44,9 +41,6 @@ export const register = async (req, res) => {
   }
 };
 
-// @desc    Iniciar sesión
-// @route   POST /api/auth/login
-// @access  Public
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -61,7 +55,6 @@ export const login = async (req, res) => {
       });
     }
 
-    // Verificar contraseña
     const isMatch = await user.matchPassword(password);
 
     if (!isMatch) {
@@ -88,9 +81,7 @@ export const login = async (req, res) => {
   }
 };
 
-// @desc    Obtener usuario actual
-// @route   GET /api/auth/me
-// @access  Private
+
 export const getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -111,9 +102,6 @@ export const getMe = async (req, res) => {
   }
 };
 
-// @desc    Cambiar contraseña
-// @route   PUT /api/auth/changepassword
-// @access  Private
 export const changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;

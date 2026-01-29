@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const profileSchema = new mongoose.Schema({
-  // Información personal
+
   nombre: {
     type: String,
     required: [true, 'El nombre es requerido'],
@@ -18,13 +18,12 @@ const profileSchema = new mongoose.Schema({
     trim: true
   },
 
-  // Foto principal del perfil 👇
   foto: {
     type: String,
-    default: '' // puedes poner un placeholder aquí si quieres
+    default: '' 
   },
   
-  // Contacto
+
   contacto: {
     telefono: String,
     email: {
@@ -38,7 +37,7 @@ const profileSchema = new mongoose.Schema({
     portfolio: String
   },
   
-  // Educación
+
   educacion: [{
     institucion: {
       type: String,
@@ -63,7 +62,7 @@ const profileSchema = new mongoose.Schema({
     }
   }],
   
-  // Experiencia técnica
+
   habilidades: {
     lenguajes: [String],
     frameworks: [String],
@@ -72,7 +71,7 @@ const profileSchema = new mongoose.Schema({
     otros: [String]
   },
   
-  // Proyectos destacados
+
   proyectos: [{
     nombre: {
       type: String,
@@ -92,7 +91,7 @@ const profileSchema = new mongoose.Schema({
     }
   }],
   
-  // Cursos y certificaciones
+
   cursos: [{
     nombre: String,
     institucion: String,
@@ -100,7 +99,7 @@ const profileSchema = new mongoose.Schema({
     descripcion: String
   }],
   
-  // Idiomas
+
   idiomas: [{
     idioma: {
       type: String,
@@ -114,7 +113,7 @@ const profileSchema = new mongoose.Schema({
     }
   }],
   
-  // Referencias
+
   referencias: [{
     nombre: String,
     telefono: String,
@@ -128,7 +127,7 @@ const profileSchema = new mongoose.Schema({
   }
 });
 
-// Middleware para actualizar la fecha de modificación
+
 profileSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();

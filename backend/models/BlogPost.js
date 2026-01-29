@@ -62,7 +62,7 @@ const blogPostSchema = new mongoose.Schema({
   }
 });
 
-// Generar slug automáticamente desde el título ANTES de validar
+
 blogPostSchema.pre('validate', function(next) {
   if (this.isModified('titulo') && this.titulo) {
     this.slug = this.titulo
@@ -75,9 +75,8 @@ blogPostSchema.pre('validate', function(next) {
   next();
 });
 
-// Calcular tiempo de lectura y actualizar fecha
 blogPostSchema.pre('save', function(next) {
-  // Calcular tiempo de lectura (aproximado: 200 palabras por minuto)
+
   if (this.isModified('contenido')) {
     const palabras = this.contenido.trim().split(/\s+/).length;
     this.tiempoLectura = Math.ceil(palabras / 200);

@@ -1,8 +1,5 @@
 import BlogPost from '../models/BlogPost.js';
 
-// @desc    Obtener todos los posts públicos
-// @route   GET /api/blog
-// @access  Public
 export const getPosts = async (req, res) => {
   try {
     const { categoria, etiqueta, page = 1, limit = 10 } = req.query;
@@ -43,9 +40,7 @@ export const getPosts = async (req, res) => {
   }
 };
 
-// @desc    Obtener post por slug
-// @route   GET /api/blog/:slug
-// @access  Public
+
 export const getPost = async (req, res) => {
   try {
     const post = await BlogPost.findOne({ 
@@ -60,7 +55,6 @@ export const getPost = async (req, res) => {
       });
     }
 
-    // Incrementar vistas
     post.vistas += 1;
     await post.save();
 
@@ -76,9 +70,7 @@ export const getPost = async (req, res) => {
   }
 };
 
-// @desc    Obtener todos los posts (incluyendo no publicados)
-// @route   GET /api/blog/admin/all
-// @access  Private/Admin
+
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await BlogPost.find().sort({ createdAt: -1 });
@@ -95,9 +87,7 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
-// @desc    Crear nuevo post
-// @route   POST /api/blog
-// @access  Private/Admin
+
 export const createPost = async (req, res) => {
   try {
     const post = await BlogPost.create(req.body);
@@ -115,9 +105,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-// @desc    Actualizar post
-// @route   PUT /api/blog/:id
-// @access  Private/Admin
+
 export const updatePost = async (req, res) => {
   try {
     const post = await BlogPost.findById(req.params.id);
@@ -148,9 +136,7 @@ export const updatePost = async (req, res) => {
   }
 };
 
-// @desc    Eliminar post
-// @route   DELETE /api/blog/:id
-// @access  Private/Admin
+
 export const deletePost = async (req, res) => {
   try {
     const post = await BlogPost.findById(req.params.id);
@@ -176,9 +162,6 @@ export const deletePost = async (req, res) => {
   }
 };
 
-// @desc    Publicar/Despublicar post
-// @route   PATCH /api/blog/:id/toggle-publish
-// @access  Private/Admin
 export const togglePublish = async (req, res) => {
   try {
     const post = await BlogPost.findById(req.params.id);

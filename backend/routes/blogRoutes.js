@@ -14,7 +14,6 @@ import {
 
 const router = express.Router();
 
-// Validaciones
 const postValidation = [
   body('titulo')
     .notEmpty()
@@ -40,11 +39,10 @@ const postValidation = [
   handleValidationErrors
 ];
 
-// Rutas públicas
 router.get('/', getPosts);
 router.get('/:slug', getPost);
 
-// Rutas protegidas (solo admin)
+
 router.get('/admin/all', protect, admin, getAllPosts);
 router.post('/', protect, admin, postValidation, createPost);
 router.put('/:id', protect, admin, postValidation, updatePost);

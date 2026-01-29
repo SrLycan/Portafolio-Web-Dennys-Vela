@@ -13,7 +13,7 @@ import {
 
 const router = express.Router();
 
-// Validaciones
+
 const profileValidation = [
   body('nombre')
     .notEmpty()
@@ -62,10 +62,9 @@ const proyectoValidation = [
   handleValidationErrors
 ];
 
-// Rutas públicas
+
 router.get('/', getProfile);
 
-// Rutas protegidas (solo admin)
 router.put('/', protect, admin, profileValidation, updateProfile);
 router.post('/educacion', protect, admin, educacionValidation, addEducacion);
 router.delete('/educacion/:id', protect, admin, deleteEducacion);

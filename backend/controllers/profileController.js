@@ -1,8 +1,5 @@
 import Profile from '../models/Profile.js';
 
-// @desc    Obtener perfil público
-// @route   GET /api/profile
-// @access  Public
 export const getProfile = async (req, res) => {
   try {
     const profile = await Profile.findOne();
@@ -26,22 +23,19 @@ export const getProfile = async (req, res) => {
   }
 };
 
-// @desc    Crear o actualizar perfil
-// @route   PUT /api/profile
-// @access  Private/Admin
 export const updateProfile = async (req, res) => {
   try {
     let profile = await Profile.findOne();
 
     if (profile) {
-      // Actualizar perfil existente
+
       profile = await Profile.findByIdAndUpdate(
         profile._id,
         req.body,
         { new: true, runValidators: true }
       );
     } else {
-      // Crear nuevo perfil
+
       profile = await Profile.create(req.body);
     }
 
@@ -58,9 +52,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-// @desc    Agregar educación
-// @route   POST /api/profile/educacion
-// @access  Private/Admin
+
 export const addEducacion = async (req, res) => {
   try {
     const profile = await Profile.findOne();
@@ -88,9 +80,7 @@ export const addEducacion = async (req, res) => {
   }
 };
 
-// @desc    Eliminar educación
-// @route   DELETE /api/profile/educacion/:id
-// @access  Private/Admin
+
 export const deleteEducacion = async (req, res) => {
   try {
     const profile = await Profile.findOne();
@@ -121,9 +111,7 @@ export const deleteEducacion = async (req, res) => {
   }
 };
 
-// @desc    Agregar proyecto
-// @route   POST /api/profile/proyectos
-// @access  Private/Admin
+
 export const addProyecto = async (req, res) => {
   try {
     const profile = await Profile.findOne();
@@ -151,9 +139,7 @@ export const addProyecto = async (req, res) => {
   }
 };
 
-// @desc    Eliminar proyecto
-// @route   DELETE /api/profile/proyectos/:id
-// @access  Private/Admin
+
 export const deleteProyecto = async (req, res) => {
   try {
     const profile = await Profile.findOne();

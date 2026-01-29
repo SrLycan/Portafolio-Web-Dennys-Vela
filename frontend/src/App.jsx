@@ -37,8 +37,8 @@ function App() {
 
               {/* Rutas de administración */}
               <Route path="/admin/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />          {/* 👈 nueva ruta */}
-              <Route path="/changepassword" element={<ChangePassword />} /> {/* 👈 nueva ruta */}
+              <Route path="/register" element={<Register />} />          
+              <Route path="/changepassword" element={<ChangePassword />} /> 
 
               <Route
                 path="/admin/dashboard"
